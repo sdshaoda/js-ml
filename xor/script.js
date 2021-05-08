@@ -33,6 +33,14 @@ window.onload = async () => {
       activation: 'sigmoid',
     })
   )
+  // 欠拟合
+  // model.add(
+  //   tf.layers.dense({
+  //     units: 1,
+  //     inputShape: [2],
+  //     activation: 'sigmoid',
+  //   })
+  // )
   model.compile({
     loss: tf.losses.logLoss,
     optimizer: tf.train.adam(0.1),
@@ -45,6 +53,17 @@ window.onload = async () => {
     epochs: 10,
     callbacks: tfvis.show.fitCallbacks({ name: '训练过程' }, ['loss']),
   })
+
+  // 欠拟合
+  // await model.fit(inputs, labels, {
+  //   validationSplit: 0.2,
+  //   epochs: 200,
+  //   callbacks: tfvis.show.fitCallbacks(
+  //     { name: '训练过程' },
+  //     ['loss', 'val_loss'],
+  //     { callbacks: ['onEpochEnd'] }
+  //   ),
+  // })
 
   console.log('训练完成')
 
