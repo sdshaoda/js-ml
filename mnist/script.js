@@ -96,7 +96,6 @@ window.onload = async () => {
   const canvas = document.querySelector('#canvas')
   canvas.addEventListener('mousemove', e => {
     if (e.buttons === 1) {
-      console.log(e, e.buttons, e.offsetX, e.offsetY)
       const ctx = canvas.getContext('2d')
       ctx.fillStyle = 'rgb(255, 255, 255)'
       ctx.fillRect(e.offsetX, e.offsetY, 25, 25)
