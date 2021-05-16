@@ -22,12 +22,15 @@ window.onload = async () => {
   })
 
   const mobilenet = await tf.loadLayersModel(MOBILENET_MODEL_PATH)
+  // 打印模型概况
   mobilenet.summary()
+  // 从 conv_pw_13_relu 层截断
   const layer = mobilenet.getLayer('conv_pw_13_relu')
   const truncatedMobilenet = tf.model({
     inputs: mobilenet.inputs,
     outputs: layer.output,
   })
+
   const model = tf.sequential()
   model.add(
     tf.layers.flatten({
@@ -59,19 +62,20 @@ window.onload = async () => {
     return { xs, ys }
   })
 
-  model.fit(xs, ys, {
+  await model.fit(xs, ys, {
     epochs: 20,
     callbacks: tfvis.show.fitCallbacks({ name: '训练过程' }, ['loss'], {
       callbacks: ['onEpochEnd'],
     }),
   })
 
+  console.log('训练完成')
+
   window.predict = async file => {
     const img = await file2img(file)
     document.body.appendChild(img)
     const pred = tf.tidy(() => {
-      const x = img2x(img)
-      const input = truncatedMobilenet.predict(x)
+      const input = truncatedMobilenet.predict(img2x(img))
       return model.predict(input)
     })
     console.log(BRAND_CLASSES[pred.argMax(1).dataSync()[0]])
