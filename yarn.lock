@@ -959,6 +959,11 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
+"@tensorflow-models/speech-commands@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.nlark.com/@tensorflow-models/speech-commands/download/@tensorflow-models/speech-commands-0.5.4.tgz#d1065c22d2a83a1e64247318ef2f83f9c4c8182b"
+  integrity sha1-0QZcItKoOh5kJHMY7y+D+cTIGCs=
+
 "@tensorflow/tfjs-backend-cpu@3.6.0":
   version "3.6.0"
   resolved "https://registry.nlark.com/@tensorflow/tfjs-backend-cpu/download/@tensorflow/tfjs-backend-cpu-3.6.0.tgz#4e64a7cf1c33b203f71f8f77cd7b0ac1ef25a871"

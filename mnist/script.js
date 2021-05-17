@@ -26,22 +26,25 @@ window.onload = async () => {
   }
 
   const model = tf.sequential()
+  // 卷积层1 提取特征
   model.add(
     tf.layers.conv2d({
       inputShape: [28, 28, 1],
-      kernelSize: 5,
-      filters: 8,
-      strides: 1,
+      kernelSize: 5, // 窗口 5 x 5
+      filters: 8, // 8个卷积核 提取不同维度特征
+      strides: 1, // 移动步长
       activation: 'relu',
       kernelInitializer: 'varianceScaling',
     })
   )
+  // 池化层1
   model.add(
     tf.layers.maxPool2d({
       poolSize: [2, 2],
       strides: [2, 2],
     })
   )
+  // 卷积层2 组合特征
   model.add(
     tf.layers.conv2d({
       kernelSize: 5,
@@ -51,6 +54,7 @@ window.onload = async () => {
       kernelInitializer: 'varianceScaling',
     })
   )
+  // 池化层2
   model.add(
     tf.layers.maxPool2d({
       poolSize: [2, 2],
