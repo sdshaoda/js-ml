@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>speech cn</title>
+  </head>
+  <body>
+    <script src="script.js"></script>
+
+    <button onclick="collect(this)">上一张</button>
+    <button onclick="collect(this)">下一张</button>
+    <button onclick="collect(this)">背景噪音</button>
+    <button onclick="save()">保存</button>
+    <pre id="count"></pre>
+    <button onclick="train()">训练</button>
+    <br />
+    监听开关：<input type="checkbox" onchange="toggle(this.checked)" />
+  </body>
+</html>
