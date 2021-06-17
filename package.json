@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"yarn start:data\" \"yarn start:page\"",
+    "start:data": "hs data -p8080 --cors",
+    "start:page": "parcel mnist/index.html",
+    "build": "parcel build linear-regression/index.html -d build/linear-regression --public-url ./ && parcel build height-weight/index.html -d build/height-weight --public-url ./ && parcel build logistic-regression/index.html -d build/logistic-regression --public-url ./ && parcel build xor/index.html -d build/xor --public-url ./ && parcel build iris/index.html -d build/iris --public-url ./ && parcel build overfit/index.html -d build/overfit --public-url ./ && parcel build mnist/index.html -d build/mnist --public-url ./ && parcel build mobilenet/index.html -d build/mobilenet --public-url ./ && parcel build brand/index.html -d build/brand --public-url ./ && parcel build speech/index.html -d build/speech --public-url ./ && parcel build speech-cn/index.html -d build/speech-cn --public-url ./ && parcel build slider/index.html -d build/slider --public-url ./",
+    "deploy": "concurrently \"hs data -p8080 --cors\" \"hs build -p80 -o\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +21,8 @@
     "@tensorflow/tfjs-vis": "^1.5.1"
   },
   "devDependencies": {
+    "concurrently": "^6.2.0",
+    "http-server": "^0.12.3",
     "parcel-bundler": "^1.12.5"
   },
   "browserslist": [
